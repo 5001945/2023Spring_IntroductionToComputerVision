@@ -50,7 +50,10 @@ def _make_cell_with_box(pdf: FPDF, tl: tuple[float, float], br: tuple[float, flo
         if rendered_w > w * 1.05:
             continue
         d[point] = distance.euclidean([w, h], [rendered_w, rendered_h])
-    size = min(d, key=d.get)
+    if d:
+        size = min(d, key=d.get)
+    else:
+        size = font_sizes[0]
     pdf.set_font(font_name, size=size)
     pdf.cell(w, h, text, align='L')
 
