@@ -1,0 +1,7 @@
+from imagedialog.widgets.originalimagewidget import OriginalImageWidget
+from imagedialog.widgets.detectpaperwidget import DetectPaperWidget
+from imagedialog.widgets.originalpaperwidget import OriginalPaperWidget
+from imagedialog.widgets.ocrwidget import OcrWidget
+from imagedialog.widgets.pdfviewwidget import PdfViewWidget
+
+from imagedialog.widgets.imagedialogwidgetbase import ImageDialogWidgetBase
