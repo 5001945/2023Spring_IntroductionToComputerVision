@@ -61,6 +61,7 @@ def get_quadrilateral(img: cv2.Mat) -> np.ndarray:
     h, w, *_ = img.shape
     area_thres = h * w // 4
 
+    approx = None
     contours, _ = cv2.findContours(img_thres, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     for cnt in contours:
         area = cv2.contourArea(cnt)
@@ -68,6 +69,8 @@ def get_quadrilateral(img: cv2.Mat) -> np.ndarray:
             approx = cv2.approxPolyDP(cnt, 0.01 * cv2.arcLength(cnt, closed=True), closed=True)  # 다각형 폐곡선 찾기
             if len(approx) == 4:
                 break  # 사각형을 뽑으면 stop
+    if approx is None:
+        raise ValueError("Cannot detect the paper.")
     
     return _sort_order(approx)
 
