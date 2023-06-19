@@ -69,7 +69,7 @@ def get_quadrilateral(img: cv2.Mat) -> np.ndarray:
             approx = cv2.approxPolyDP(cnt, 0.01 * cv2.arcLength(cnt, closed=True), closed=True)  # 다각형 폐곡선 찾기
             if len(approx) == 4:
                 break  # 사각형을 뽑으면 stop
-    if approx is None:
+    else:
         raise ValueError("Cannot detect the paper.")
     
     return _sort_order(approx)
